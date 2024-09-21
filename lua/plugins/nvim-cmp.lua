@@ -7,6 +7,7 @@ return {
 	{
 		'hrsh7th/nvim-cmp',
 		dependencies = {
+			'neovim/nvim-lspconfig',
 			'hrsh7th/cmp-nvim-lsp',
 			'hrsh7th/cmp-buffer',
 			'hrsh7th/cmp-path',
@@ -22,10 +23,6 @@ return {
 					expand = function(args)
 						require('luasnip').lsp_expand(args.body)
 					end,
-				},
-				window = {
-					-- completion = cmp.config.window.bordered(),
-					-- documentation = cmp.config.window.bordered(),
 				},
 				mapping = cmp.mapping.preset.insert({
 					['<C-u>'] = cmp.mapping.scroll_docs(-8),
@@ -75,9 +72,9 @@ return {
 
 			-- Set up lspconfig.
 			local capabilities = require('cmp_nvim_lsp').default_capabilities()
-			require('lspconfig').rust_analyzer.setup {
-				capabilities = capabilities
-			}
-		end
+			local lspconfig = require('lspconfig')
+			lspconfig.lua_ls.setup { capabilities = capabilities }
+			lspconfig.rust_analyzer.setup { capabilities = capabilities }
+		end,
 	},
 }

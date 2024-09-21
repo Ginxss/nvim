@@ -17,6 +17,6 @@ return {
 					return math.floor(vim.o.lines * 0.9)
 				end,
 			}
-		}
+		},
 	}
 }

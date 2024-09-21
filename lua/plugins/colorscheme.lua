@@ -20,7 +20,19 @@ return {
 		lazy = false,
 		priority = 1000,
 		config = function()
+			require("catppuccin").setup({
+				styles = {
+					conditionals = {}, -- removed italic
+				},
+				-- To treat builtin functions like regular functions:
+				-- custom_highlights = function(colors)
+				-- 	return {
+				-- 		["@function.builtin"] = { link = "Function" }
+				-- 	}
+				-- end,
+			})
+
 			vim.cmd.colorscheme 'catppuccin-mocha'
-		end
+		end,
 	}
 }

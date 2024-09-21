@@ -4,7 +4,7 @@ return {
 	event = { 'BufReadPre', 'BufNewFile' },
 	config = function()
 		require('nvim-treesitter.configs').setup {
-			ensure_installed = { 'rust' },
+			ensure_installed = { 'lua', 'rust' },
 			auto_install = true,
 			highlight = {
 				enable = true,
@@ -21,5 +21,5 @@ return {
 				},
 			},
 		}
-	end
+	end,
 }

@@ -16,6 +16,6 @@ return {
 			})
 
 			vim.keymap.set('n', '<leader>e', '<CMD>NvimTreeFindFileToggle<CR>')
-		end
+		end,
 	},
 }
