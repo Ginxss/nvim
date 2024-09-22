@@ -2,13 +2,11 @@ return {
 	"hrsh7th/nvim-cmp",
 	event = { "InsertEnter", "CmdlineEnter" },
 	dependencies = {
-		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
 		"hrsh7th/cmp-cmdline",
 		"saadparwaiz1/cmp_luasnip",
 		"L3MON4D3/LuaSnip",
-		"neovim/nvim-lspconfig",
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -65,11 +63,5 @@ return {
 			}),
 			matching = { disallow_symbol_nonprefix_matching = false },
 		})
-
-		-- Set up lspconfig.
-		local capabilities = require("cmp_nvim_lsp").default_capabilities()
-		local lspconfig = require("lspconfig")
-		lspconfig.lua_ls.setup({ capabilities = capabilities })
-		lspconfig.rust_analyzer.setup({ capabilities = capabilities })
 	end,
 }

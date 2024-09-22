@@ -80,4 +80,4 @@ vim.keymap.set("n", "<leader>d", function()
 	vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end)
 
--- vim.keymap.set("n", "<leader>z", "<CMD>Lazy<CR>")
+vim.keymap.set("n", "<leader>z", "<CMD>Lazy<CR>")
