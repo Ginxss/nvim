@@ -41,6 +41,9 @@ vim.keymap.set("i", "<A-k>", "<ESC><CMD>m -2<CR>==gi")
 vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
 
+-- switch back to previous file
+vim.keymap.set("n", "<leader>b", "<C-^>")
+
 -- ctrl+s save
 vim.keymap.set("n", "<C-s>", "<CMD>w<CR>")
 vim.keymap.set("i", "<C-s>", "<ESC><CMD>w<CR>")
