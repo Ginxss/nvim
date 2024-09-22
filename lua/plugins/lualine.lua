@@ -2,13 +2,26 @@ return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
-		local function telescope_statusline()
-			return "Telescope"
-		end
-
 		local telescope = {
-			sections = { lualine_a = { telescope_statusline } },
+			sections = {
+				lualine_a = {
+					function()
+						return "Telescope"
+					end,
+				},
+			},
 			filetypes = { "TelescopePrompt" },
+		}
+
+		local undotree = {
+			sections = {
+				lualine_a = {
+					function()
+						return "Undotree"
+					end,
+				},
+			},
+			filetypes = { "undotree" },
 		}
 
 		require("lualine").setup({
@@ -16,7 +29,7 @@ return {
 				globalstatus = true,
 			},
 			inactive_sections = {},
-			extensions = { "lazy", "nvim-tree", "toggleterm", "mason", telescope },
+			extensions = { "lazy", "nvim-tree", "toggleterm", "mason", telescope, undotree },
 		})
 	end,
 }

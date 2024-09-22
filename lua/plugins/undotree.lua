@@ -1,9 +1,9 @@
 return {
-	'mbbill/undotree',
-	event = { 'BufReadPre', 'BufNewFile' },
+	"mbbill/undotree",
+	keys = {
+		{ "<leader>u", vim.cmd.UndotreeToggle },
+	},
 	config = function()
 		vim.g.undotree_SetFocusWhenToggle = 1
-
-		vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
 	end,
 }
