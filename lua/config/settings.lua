@@ -4,8 +4,8 @@ vim.g.loaded_netrwPlugin = 1
 
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 vim.wo.number = true
 vim.wo.relativenumber = true
@@ -19,4 +19,3 @@ vim.opt.expandtab = false
 
 vim.opt.splitright = true
 vim.opt.splitbelow = true
-

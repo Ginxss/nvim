@@ -1,10 +1,10 @@
 return {
-	'nvim-treesitter/nvim-treesitter',
-	build = ':TSUpdate',
-	event = { 'BufReadPre', 'BufNewFile' },
+	"nvim-treesitter/nvim-treesitter",
+	build = ":TSUpdate",
+	event = { "BufReadPre", "BufNewFile" },
 	config = function()
-		require('nvim-treesitter.configs').setup {
-			ensure_installed = { 'lua', 'rust' },
+		require("nvim-treesitter.configs").setup({
+			ensure_installed = { "lua", "rust" },
 			auto_install = true,
 			highlight = {
 				enable = true,
@@ -16,10 +16,10 @@ return {
 					init_selection = "<C-space>",
 					node_incremental = "<C-space>",
 					scope_incremental = false,
-					-- <C-h> = same control character as backspace (other special keys have a twin ctrl char too)
+					-- <C-h> = same control character as ctrl + backspace (other special keys have a twin ctrl char too)
 					node_decremental = "<C-h>",
 				},
 			},
-		}
+		})
 	end,
 }
