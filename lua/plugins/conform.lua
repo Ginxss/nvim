@@ -1,14 +1,14 @@
 return {
-	'stevearc/conform.nvim',
-	event = { 'BufReadPre', 'BufNewFile' },
+	"stevearc/conform.nvim",
+	event = { "BufReadPre", "BufNewFile" },
 	opts = {
 		format_on_save = {
 			timeout_ms = 500,
-			lsp_format = 'fallback',
+			lsp_format = "fallback",
 		},
 		formatters_by_ft = {
-			rust = { 'rustfmt', lsp_format = 'fallback' },
-			lua = { 'stylua' },
+			rust = { "rustfmt", lsp_format = "fallback" },
+			lua = { "stylua" },
 		},
 	},
 }
