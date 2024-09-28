@@ -8,6 +8,13 @@ return {
 			build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
 		},
 	},
+	keys = {
+		-- Using require("telescope.builtin") here causes telescope to be loaded at startup.
+		-- Setting this as the lazy load event and initializing the keybindings in config is ok
+		-- because neovim/lazy.nvim finishes loading the plugin before reading the next input.
+		-- Tested with simulated immediate keypresses.
+		{ "<leader>f" },
+	},
 	config = function()
 		local telescope = require("telescope")
 		telescope.setup({
