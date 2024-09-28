@@ -3,6 +3,8 @@
 return {
 	{
 		"folke/tokyonight.nvim",
+		-- required by telescope when opening colorscheme picker
+		lazy = true,
 		config = function()
 			require("tokyonight").setup({
 				styles = {
