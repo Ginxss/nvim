@@ -1,4 +1,5 @@
 -- start of line
+-- TODO: doesn't work with v?
 vim.keymap.set({ "n", "o", "v" }, "<C-h>", "^", { noremap = true, silent = false })
 -- end of line
 vim.keymap.set({ "n", "o", "v" }, "<C-l>", "$")
@@ -57,6 +58,9 @@ vim.keymap.set("t", "<ESC>", "<C-\\><C-n>")
 -- system clipboard
 vim.keymap.set({ "n", "o", "v" }, "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>yy", '"+yy')
+
+-- paste without losing content
+vim.keymap.set("v", "<leader>p", "pgvy")
 
 -- code actions
 vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action)
