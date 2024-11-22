@@ -44,6 +44,12 @@ return {
 					link = "FloatBorder",
 				},
 			},
+			on_open = function()
+				vim.keymap.set("n", "<ESC>", "<CMD>ToggleTerm<CR>") -- override esc for close mapping (open_mapping is a toggle, close_mapping doesn't exist)
+			end,
+			on_close = function()
+				vim.keymap.set("n", "<ESC>", vim.g.default_esc_mapping) -- restore original mapping
+			end,
 		})
 	end,
 }

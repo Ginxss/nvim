@@ -35,7 +35,11 @@ vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv") -- <cmd> runs directly in the s
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
 
 -- clear search highlights with esc
-vim.keymap.set("n", "<ESC>", "<CMD>nohlsearch<CR>")
+vim.g.default_esc_mapping = "<CMD>nohlsearch<CR>"
+vim.keymap.set("n", "<ESC>", vim.g.default_esc_mapping)
+
+-- exit terminal mode with esc
+vim.keymap.set("t", "<ESC>", "<C-\\><C-n>")
 
 -- ctrl+s save (and exit insert mode)
 vim.keymap.set("n", "<C-s>", "<CMD>w<CR>")
@@ -50,9 +54,6 @@ vim.keymap.set("n", "<leader>yy", '"+yy')
 
 -- paste without losing content
 vim.keymap.set("v", "<leader>p", "pgvy")
-
--- exit terminal mode with esc
-vim.keymap.set("t", "<ESC>", "<C-\\><C-n>")
 
 -- code actions
 vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action)

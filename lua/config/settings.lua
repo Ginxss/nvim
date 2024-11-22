@@ -13,6 +13,9 @@ vim.wo.relativenumber = true
 vim.opt.scrolloff = 8
 vim.opt.cursorline = true
 
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = false
