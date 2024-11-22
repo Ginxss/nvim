@@ -42,7 +42,7 @@ vim.keymap.set("n", "<C-s>", "<CMD>w<CR>")
 vim.keymap.set("i", "<C-s>", "<ESC><CMD>w<CR>")
 
 -- switch back to previous file
-vim.keymap.set("n", "<leader>h", "<C-^>")
+vim.keymap.set("n", "<leader>b", "<C-^>")
 
 -- system clipboard
 vim.keymap.set({ "n", "o", "v" }, "<leader>y", '"+y')
