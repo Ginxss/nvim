@@ -16,8 +16,7 @@ return {
 					init_selection = "<C-space>",
 					node_incremental = "<C-space>",
 					scope_incremental = false,
-					-- <C-h> = same control character as ctrl + backspace (other special keys have a twin ctrl char too)
-					node_decremental = "<C-h>",
+					node_decremental = "<BS>",
 				},
 			},
 		})

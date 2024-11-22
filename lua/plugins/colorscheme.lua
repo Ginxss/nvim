@@ -1,25 +1,8 @@
--- the colorscheme should be available when starting Neovim
--- lazy: false and priority = 1000
 return {
-	{
-		"folke/tokyonight.nvim",
-		-- required by telescope when opening colorscheme picker
-		lazy = true,
-		config = function()
-			require("tokyonight").setup({
-				styles = {
-					keywords = { italic = false },
-				},
-			})
-
-			-- vim.cmd([[colorscheme tokyonight]])
-		end,
-	},
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
-		lazy = false,
-		priority = 1000,
+		priority = 1000, -- main colorscheme should be loaded asap -> lazy = false and priority = 1000
 		config = function()
 			require("catppuccin").setup({
 				styles = {
@@ -34,6 +17,19 @@ return {
 			})
 
 			vim.cmd.colorscheme("catppuccin-mocha")
+		end,
+	},
+	{
+		"folke/tokyonight.nvim",
+		lazy = true, -- manually required by telescope when opening colorscheme picker
+		config = function()
+			require("tokyonight").setup({
+				styles = {
+					keywords = { italic = false },
+				},
+			})
+
+			-- vim.cmd([[colorscheme tokyonight]])
 		end,
 	},
 }

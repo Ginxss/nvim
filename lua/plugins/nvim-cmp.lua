@@ -5,8 +5,8 @@ return {
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
 		"hrsh7th/cmp-cmdline",
-		"saadparwaiz1/cmp_luasnip",
 		"L3MON4D3/LuaSnip",
+		"saadparwaiz1/cmp_luasnip",
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -18,10 +18,10 @@ return {
 				end,
 			},
 			mapping = cmp.mapping.preset.insert({
-				["<C-u>"] = cmp.mapping.scroll_docs(-8),
-				["<C-d>"] = cmp.mapping.scroll_docs(8),
 				["<C-Space>"] = cmp.mapping.complete(),
 				["<C-e>"] = cmp.mapping.abort(),
+				["<C-u>"] = cmp.mapping.scroll_docs(-8),
+				["<C-d>"] = cmp.mapping.scroll_docs(8),
 				["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
 				["<Tab>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
 			}),
@@ -31,6 +31,25 @@ return {
 			}, {
 				{ name = "buffer" },
 			}),
+		})
+
+		-- cmp for search
+		cmp.setup.cmdline({ "/", "?" }, {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = {
+				{ name = "buffer" },
+			},
+		})
+
+		-- cmp for ':'
+		cmp.setup.cmdline(":", {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = cmp.config.sources({
+				{ name = "path" },
+			}, {
+				{ name = "cmdline" },
+			}),
+			matching = { disallow_symbol_nonprefix_matching = false },
 		})
 
 		-- To use git you need to install the plugin petertriho/cmp-git and uncomment lines below
@@ -44,24 +63,5 @@ return {
 			})
 			require('cmp_git').setup() ]]
 		--
-
-		-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-		cmp.setup.cmdline({ "/", "?" }, {
-			mapping = cmp.mapping.preset.cmdline(),
-			sources = {
-				{ name = "buffer" },
-			},
-		})
-
-		-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-		cmp.setup.cmdline(":", {
-			mapping = cmp.mapping.preset.cmdline(),
-			sources = cmp.config.sources({
-				{ name = "path" },
-			}, {
-				{ name = "cmdline" },
-			}),
-			matching = { disallow_symbol_nonprefix_matching = false },
-		})
 	end,
 }
