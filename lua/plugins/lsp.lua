@@ -9,8 +9,8 @@ return {
 		lazy = true,
 		dependencies = { "williamboman/mason.nvim" },
 		opts = {
-			ensure_installed = { "lua_ls", "rust_analyzer" },
-			automatic_installation = true,
+			-- Should use local rust_analyzer & rustfmt (rustup). If not possible, install manually via Mason.
+			ensure_installed = { "lua_ls" },
 		},
 	},
 	{
