@@ -13,6 +13,7 @@ return {
 			},
 		})
 
-		vim.keymap.set("n", "<leader>e", "<CMD>NvimTreeFindFileToggle<CR>")
+		vim.g.tree_mapping = "<CMD>NvimTreeFindFileToggle<CR>"
+		vim.keymap.set("n", "<leader>e", vim.g.tree_mapping)
 	end,
 }
