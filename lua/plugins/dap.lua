@@ -87,6 +87,7 @@ return {
 			}
 
 			-- additional keymaps
+			vim.keymap.set("n", "<leader><F4>", dap.clear_breakpoints)
 			vim.keymap.set("n", "<F5>", dap.continue)
 			vim.keymap.set("n", "<leader><F5>", dap.restart)
 			vim.keymap.set("n", "<F6>", dap.step_over)
@@ -120,6 +121,9 @@ return {
 			dap.listeners.before.event_exited.dapui_config = function()
 				close_ui()
 			end
+
+			vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", numhl = "DapBreakpoint" })
+			vim.fn.sign_define("DapStopped", { text = "▶", texthl = "DapStopped", numhl = "DapStopped" })
 		end,
 	},
 }
