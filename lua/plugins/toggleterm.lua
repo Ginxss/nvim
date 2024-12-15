@@ -12,7 +12,7 @@ return {
 			insert_mappings = false,
 			terminal_mappings = false,
 			persist_mode = false,
-			shell = "fish",
+			-- shell = "fish", -- set by global shell option
 			direction = "float",
 			float_opts = {
 				border = "curved",

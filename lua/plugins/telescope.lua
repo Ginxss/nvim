@@ -20,7 +20,7 @@ return {
 		{
 			"<leader>fo",
 			function()
-				require("telescope.builtin").oldfiles()
+				require("telescope.builtin").oldfiles({ cwd = vim.fn.getcwd() })
 			end,
 		},
 		{
@@ -91,6 +91,9 @@ return {
 					},
 				},
 				sorting_strategy = "ascending",
+			},
+			extensions = {
+				fzf = {},
 			},
 		})
 		telescope.load_extension("fzf")

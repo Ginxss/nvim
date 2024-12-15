@@ -55,6 +55,14 @@ vim.keymap.set("n", "<leader>yy", '"+yy')
 -- paste without losing content
 vim.keymap.set("v", "<leader>p", "pgvy")
 
+-- move through tabs
+vim.keymap.set("n", "<C-w>t", "gt")
+vim.keymap.set("n", "<C-w><C-t>", "gt")
+
+-- move through quickfix list
+vim.keymap.set("n", "<leader>qj", "<CMD>cnext<CR>")
+vim.keymap.set("n", "<leader>qk", "<CMD>cprevious<CR>")
+
 -- code actions
 vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action)
 vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename)
