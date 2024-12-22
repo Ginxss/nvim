@@ -1,3 +1,4 @@
+-- Maybe try out blink.cmp?
 return {
 	"hrsh7th/nvim-cmp",
 	event = { "InsertEnter", "CmdlineEnter" },

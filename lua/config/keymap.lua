@@ -34,6 +34,9 @@ vim.keymap.set("i", "<A-k>", "<ESC><CMD>m -2<CR>==gi")
 vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv") -- <cmd> runs directly in the same execution context, : uses the cmdline context -> can only find the selection marks with :
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
 
+-- insert semicolon at end of line and exit insert mode
+vim.keymap.set("i", "<C-q>", "<End>;<ESC>")
+
 -- clear search highlights with esc
 vim.g.default_esc_mapping = "<CMD>nohlsearch<CR>"
 vim.keymap.set("n", "<ESC>", vim.g.default_esc_mapping)
