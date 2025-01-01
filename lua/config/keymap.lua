@@ -90,4 +90,4 @@ vim.keymap.set("n", "<leader>h", function()
 end)
 
 -- for testing lazy loading
--- vim.keymap.set("n", "<leader>z", "<CMD>Lazy<CR>")
+vim.keymap.set("n", "<leader>z", "<CMD>Lazy<CR>")

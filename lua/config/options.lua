@@ -1,3 +1,5 @@
+vim.g.is_windows = vim.loop.os_uname().sysname == "Windows_NT"
+
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -23,4 +25,6 @@ vim.opt.expandtab = false
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
-vim.opt.shell = "/usr/bin/fish"
+if not vim.g.is_windows then
+	vim.opt.shell = "/usr/bin/fish"
+end
