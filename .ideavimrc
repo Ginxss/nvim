@@ -1,0 +1,215 @@
+" OPTIONS (https://jb.gg/h38q75)
+
+let mapleader = " "
+
+set relativenumber
+
+set scrolloff=8
+
+set incsearch
+set ignorecase
+set smartcase
+
+
+" PLUGINS (https://jb.gg/ideavim-plugins)
+
+Plug 'machakann/vim-highlightedyank'
+let g:highlightedyank_highlight_duration = 75
+
+Plug 'tpope/vim-commentary'
+
+
+" VIM KEYMAPS
+
+" Quick movement with ctrl
+nnoremap <C-h> ^
+onoremap <C-h> ^
+vnoremap <C-h> ^
+
+nnoremap <C-l> $
+onoremap <C-l> $
+vnoremap <C-l> $
+
+nnoremap <C-j> }
+onoremap <C-j> }
+vnoremap <C-j> }
+
+nnoremap <C-k> {
+onoremap <C-k> {
+vnoremap <C-k> {
+
+" Move in insert mode with ctrl
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
+
+" f match forward (default backward is , and default forward is ;)
+nnoremap . ;
+onoremap . ;
+vnoremap . ;
+
+" Jump to corresponding bracket
+nnoremap ö %
+onoremap ö %
+vnoremap ö %
+
+" Jump context
+nnoremap ü [
+onoremap ü [
+vnoremap ü [
+
+nnoremap ä ]
+onoremap ä ]
+vnoremap ä ]
+
+nnoremap üü [m{j_f(
+onoremap üü [m{j_f(
+vnoremap üü [m{j_f(
+
+" Center on jumps
+nnoremap <C-d> <C-d>zz
+onoremap <C-d> <C-d>zz
+vnoremap <C-d> <C-d>zz
+
+nnoremap <C-u> <C-u>zz
+onoremap <C-u> <C-u>zz
+vnoremap <C-u> <C-u>zz
+
+nnoremap n nzz
+onoremap n nzz
+vnoremap n nzz
+
+nnoremap N Nzz
+onoremap N Nzz
+vnoremap N Nzz
+
+" Move line/selection up and down
+nnoremap <A-j> :m +1<CR>==
+nnoremap <A-k> :m -2<CR>==
+inoremap <A-j> <ESC>:m +1<CR>==gi
+inoremap <A-k> <ESC>:m -2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
+" Insert semicolon at end of line and exit insert mode
+inoremap <C-q> <End>;<ESC>
+
+" Clear search highlights with esc
+nnoremap <ESC> :nohlsearch<CR>
+
+" Ctrl+s save (and exit insert mode)
+nnoremap <C-s> :w<CR>
+inoremap <C-s> <ESC>:w<CR>
+
+" System clipboard
+nnoremap <leader>yy "+yy
+nnoremap <leader>y "+y
+onoremap <leader>y "+y
+vnoremap <leader>y "+y
+
+nnoremap <leader>dd "+dd
+nnoremap <leader>d "+d
+onoremap <leader>d "+d
+vnoremap <leader>d "+d
+
+nnoremap <leader>p "+p
+vnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>P "+P
+
+" Paste without losing content
+vnoremap <C-p> pgvy
+
+" Switch back to previous file
+nnoremap <leader>b <C-^>
+
+" Format log file
+nnoremap <leader><leader>l :%s/\\\n/\r/g<CR>:%s/\\\t/    /g<CR>
+
+" Move through tabs
+nnoremap <C-w>t gt
+nnoremap <C-w><C-t> gt
+
+nnoremap <C-w>T gT
+nnoremap <C-w><C-T> gT
+
+" Close current file
+nnoremap <leader>x :q<CR>
+onoremap <leader>x :q<CR>
+vnoremap <leader>x :q<CR>
+
+nnoremap <leader><leader><leader>x :qa<CR>
+onoremap <leader><leader><leader>x :qa<CR>
+vnoremap <leader><leader><leader>x :qa<CR>
+
+
+" ACTION KEYMAPS (https://jb.gg/abva4t)
+
+" Reopen closed tab
+map <leader>B <Action>(ReopenClosedTab)
+
+" New tab group
+map <C-w>n <Action>(MoveTabRight)
+map <C-w><C-n> <Action>(MoveTabRight)
+
+" Switch to other tab group
+map <C-w>m <Action>(MoveEditorToOppositeTabGroup)
+map <C-w><C-m> <Action>(MoveEditorToOppositeTabGroup)
+
+" Join tab groups
+map <C-w>u <Action>(Unsplit)
+map <C-w><C-u> <Action>(Unsplit)
+
+" Close current tab group
+map <leader><leader>x <Action>(CloseAllEditors)
+
+" Hover
+map <leader>h <Action>(ShowHoverInfo)
+map <leader>i <Action>(QuickImplementations)
+
+" Find
+map <leader>ff <Action>(GotoFile)
+map <leader>fw <Action>(FindInPath)
+map <leader>fo <Action>(RecentFiles)
+
+" Views
+map <leader>e <Action>(SelectInProjectView)
+map <leader><leader>e <Action>(ActivateProjectToolWindow)
+map <leader>t <Action>(ActivateTerminalToolWindow)
+map <leader>sr <Action>(ActivateServicesToolWindow)
+map <leader>st <Action>(ActivateStructureToolWindow)
+
+" Code actions
+map <leader>ca <Action>(ShowIntentionActions)
+map <leader>cr <Action>(RenameElement)
+
+" Go to
+map gd <Action>(GotoDeclaration)
+map ga <Action>(GotoImplementation)
+map gs <Action>(GotoSuperMethod)
+map gp <Action>(GotoNextError)
+map gP <Action>(GotoPreviousError)
+
+" Run/Debug
+map <leader>rw <Action>(ActivateRunToolWindow)
+map <leader>rb <Action>(ToggleLineBreakpoint)
+map <leader>rr <Action>(Run)
+map <leader><leader>rr <Action>(ChooseRunConfiguration)
+map <leader>rd <Action>(Debug)
+map <leader><leader>rd <Action>(ChooseDebugConfiguration)
+map <leader>rc <Action>(Resume)
+map <leader>rn <Action>(StepOver)
+map <leader>ri <Action>(StepInto)
+map <leader>ro <Action>(StepOut)
+
+" Git
+map <leader>gw <Action>(ActivateCommitToolWindow)
+map <leader>gn <Action>(VcsShowNextChangeMarker)
+map <leader>gp <Action>(VcsShowPrevChangeMarker)
+map <leader>gd <Action>(Compare.SameVersion)
+map <leader>gr <Action>(Vcs.RollbackChangedLines)
+map <leader>gb <Action>(Annotate)
+
+" Parameter info (collides with "editor up", but that's ok)
+map <C-p> <Action>(ParameterInfo)
