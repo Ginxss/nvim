@@ -16,6 +16,12 @@ return {
 					require("dap").toggle_breakpoint()
 				end,
 			},
+			{
+				"<leader>rb",
+				function()
+					require("dap").toggle_breakpoint()
+				end,
+			},
 		},
 		config = function()
 			local dap, dapui = require("dap"), require("dapui")
@@ -93,6 +99,13 @@ return {
 			vim.keymap.set("n", "<F6>", dap.step_over)
 			vim.keymap.set("n", "<F7>", dap.step_into)
 			vim.keymap.set("n", "<F8>", dap.step_out)
+
+			vim.keymap.set("n", "<leader><leader>rb", dap.clear_breakpoints)
+			vim.keymap.set("n", "<leader>rr", dap.continue)
+			vim.keymap.set("n", "<leader><leader>rr", dap.restart)
+			vim.keymap.set("n", "<leader>rn", dap.step_over)
+			vim.keymap.set("n", "<leader>ri", dap.step_into)
+			vim.keymap.set("n", "<leader>ro", dap.step_out)
 
 			-- UI
 			dapui.setup()

@@ -19,6 +19,7 @@ vim.keymap.set({ "n", "o", "v" }, "ö", "%")
 -- jump context
 vim.keymap.set({ "n", "o", "v" }, "ü", "[")
 vim.keymap.set({ "n", "o", "v" }, "ä", "]")
+vim.keymap.set({ "n", "o", "v" }, "üü", "[m{j_f(")
 
 -- center on jumps
 vim.keymap.set({ "n", "o", "v" }, "<C-d>", "<C-d>zz")
@@ -48,19 +49,32 @@ vim.keymap.set("t", "<ESC>", "<C-\\><C-n>")
 vim.keymap.set("n", "<C-s>", "<CMD>w<CR>")
 vim.keymap.set("i", "<C-s>", "<ESC><CMD>w<CR>")
 
+-- system clipboard
+vim.keymap.set("n", "<leader>yy", '"+yy')
+vim.keymap.set({ "n", "o", "v" }, "<leader>y", '"+y')
+
+vim.keymap.set("n", "<leader>dd", '"+dd')
+vim.keymap.set({ "n", "o", "v" }, "<leader>d", '"+d')
+
+vim.keymap.set({ "n", "v" }, "<leader>p", '"+p')
+vim.keymap.set({ "n", "v" }, "<leader>P", '"+P')
+
+-- paste without losing content
+vim.keymap.set("v", "<C-p>", "pgvy")
+
 -- switch back to previous file
 vim.keymap.set("n", "<leader>b", "<C-^>")
 
--- system clipboard
-vim.keymap.set({ "n", "o", "v" }, "<leader>y", '"+y')
-vim.keymap.set("n", "<leader>yy", '"+yy')
-
--- paste without losing content
-vim.keymap.set("v", "<leader>p", "pgvy")
+-- Format log file
+vim.keymap.set("n", "<leader><leader>l", "<CMD>%s/\\\\n/\\r/g<CR><CMD>%s/\\\\t/\\t/g<CR>")
 
 -- move through tabs
 vim.keymap.set("n", "<C-w>t", "gt")
 vim.keymap.set("n", "<C-w><C-t>", "gt")
+
+-- close current file
+vim.keymap.set({ "n", "o", "v" }, "<leader>x", "<CMD>q<CR>")
+vim.keymap.set({ "n", "o", "v" }, "<leader><leader>x", "<CMD>qa<CR>")
 
 -- move through quickfix list
 vim.keymap.set("n", "<leader>qj", "<CMD>cnext<CR>")
@@ -68,24 +82,24 @@ vim.keymap.set("n", "<leader>qk", "<CMD>cprevious<CR>")
 
 -- code actions
 vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action)
-vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename)
+vim.keymap.set({ "n", "v" }, "<leader>cr", vim.lsp.buf.rename)
 
 -- go to definition/declaration
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 vim.keymap.set("n", "gD", vim.lsp.buf.declaration)
-vim.keymap.set("n", "gi", vim.lsp.buf.implementation)
+vim.keymap.set("n", "ga", vim.lsp.buf.implementation)
 
 -- go to diagnostics
 vim.keymap.set("n", "gp", vim.diagnostic.goto_next)
 vim.keymap.set("n", "gP", vim.diagnostic.goto_prev)
 
 -- toggle diagnostics
-vim.keymap.set("n", "<leader>d", function()
+vim.keymap.set("n", "<leader><leader>d", function()
 	vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end)
 
 -- toggle inlay hints
-vim.keymap.set("n", "<leader>h", function()
+vim.keymap.set("n", "<leader><leader>h", function()
 	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end)
 
