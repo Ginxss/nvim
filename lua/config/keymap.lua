@@ -53,9 +53,6 @@ vim.keymap.set("i", "<C-s>", "<ESC><CMD>w<CR>")
 vim.keymap.set("n", "<leader>yy", '"+yy')
 vim.keymap.set({ "n", "o", "v" }, "<leader>y", '"+y')
 
-vim.keymap.set("n", "<leader>dd", '"+dd')
-vim.keymap.set({ "n", "o", "v" }, "<leader>d", '"+d')
-
 vim.keymap.set({ "n", "v" }, "<leader>p", '"+p')
 vim.keymap.set({ "n", "v" }, "<leader>P", '"+P')
 

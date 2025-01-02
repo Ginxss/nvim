@@ -93,19 +93,19 @@ return {
 			}
 
 			-- additional keymaps
+			vim.keymap.set("n", "<leader><leader>rb", dap.clear_breakpoints)
+			vim.keymap.set("n", "<leader>rd", dap.continue)
+			vim.keymap.set("n", "<leader><leader>rd", dap.restart)
+			vim.keymap.set("n", "<leader>rn", dap.step_over)
+			vim.keymap.set("n", "<leader>ri", dap.step_into)
+			vim.keymap.set("n", "<leader>ro", dap.step_out)
+
 			vim.keymap.set("n", "<leader><F4>", dap.clear_breakpoints)
 			vim.keymap.set("n", "<F5>", dap.continue)
 			vim.keymap.set("n", "<leader><F5>", dap.restart)
 			vim.keymap.set("n", "<F6>", dap.step_over)
 			vim.keymap.set("n", "<F7>", dap.step_into)
 			vim.keymap.set("n", "<F8>", dap.step_out)
-
-			vim.keymap.set("n", "<leader><leader>rb", dap.clear_breakpoints)
-			vim.keymap.set("n", "<leader>rr", dap.continue)
-			vim.keymap.set("n", "<leader><leader>rr", dap.restart)
-			vim.keymap.set("n", "<leader>rn", dap.step_over)
-			vim.keymap.set("n", "<leader>ri", dap.step_into)
-			vim.keymap.set("n", "<leader>ro", dap.step_out)
 
 			-- UI
 			dapui.setup()
