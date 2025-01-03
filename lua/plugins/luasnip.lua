@@ -2,7 +2,7 @@ return {
 	"L3MON4D3/LuaSnip",
 	lazy = true,
 	version = "v2.*",
-	build = "make install_jsregexp",
+	build = not vim.g.is_windows and "make install_jsregexp" or nil,
 	dependencies = { "rafamadriz/friendly-snippets" },
 	config = function()
 		local ls = require("luasnip")

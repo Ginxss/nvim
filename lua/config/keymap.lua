@@ -1,5 +1,9 @@
 -- default: noremap = true -> no recursive mapping: you can include lhs in rhs
 
+-- Useful default mappings:
+-- S-b, S_w -> move until whitespace
+-- C-xl -> complete line
+
 -- quick movement with ctrl
 vim.keymap.set({ "n", "o", "v" }, "<C-h>", "^")
 vim.keymap.set({ "n", "o", "v" }, "<C-l>", "$")
