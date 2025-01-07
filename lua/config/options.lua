@@ -26,6 +26,9 @@ vim.opt.expandtab = false
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
+-- use this to always show the sign column to avoid jumping
+-- vim.opt.signcolumn = "yes"
+
 if not vim.g.is_windows then
 	vim.opt.shell = "/usr/bin/fish"
 end

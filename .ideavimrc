@@ -124,7 +124,7 @@ vnoremap <C-p> pgvy
 nnoremap <leader>b <C-^>
 
 " Format log file
-nnoremap <leader><leader>l :%s/\\\n/\r/g<CR>:%s/\\\t/    /g<CR>
+nnoremap <leader><leader>l :%s/\\\n/\r/g<CR>:%s/\\\t/    /g<CR>:g/ERROR/exec "normal O"<CR>
 
 " Move through tabs
 nnoremap <C-w>t gt

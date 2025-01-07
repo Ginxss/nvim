@@ -67,7 +67,15 @@ vim.keymap.set("v", "<C-p>", "pgvy")
 vim.keymap.set("n", "<leader>b", "<C-^>")
 
 -- Format log file
-vim.keymap.set("n", "<leader><leader>l", "<CMD>%s/\\\\n/\\r/g<CR><CMD>%s/\\\\t/\\t/g<CR>")
+vim.keymap.set(
+	"n",
+	"<leader><leader>l",
+	[[
+		<CMD>%s/\\\\n/\\r/g<CR>
+		<CMD>%s/\\\\t/\\t/g<CR>
+		<CMD>g/ERROR/exec "normal O"<CR>
+	]]
+)
 
 -- move through tabs
 vim.keymap.set("n", "<C-w>t", "gt")
