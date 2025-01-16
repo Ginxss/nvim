@@ -22,7 +22,17 @@ return {
 			local lspconfig = require("lspconfig")
 
 			lspconfig.lua_ls.setup({ capabilities = capabilities })
-			lspconfig.rust_analyzer.setup({ capabilities = capabilities })
+
+			lspconfig.rust_analyzer.setup({
+				capabilities = capabilities,
+				settings = {
+					["rust-analyzer"] = {
+						inlayHints = {
+							maxLength = 100,
+						},
+					},
+				},
+			})
 		end,
 	},
 }

@@ -1,7 +1,6 @@
 -- default: noremap = true -> no recursive mapping: you can include lhs in rhs
 
 -- Useful default mappings:
--- S-b, S_w -> move until whitespace
 -- C-xl -> complete line
 
 -- quick movement with ctrl
@@ -70,11 +69,7 @@ vim.keymap.set("n", "<leader>b", "<C-^>")
 vim.keymap.set(
 	"n",
 	"<leader><leader>l",
-	[[
-		<CMD>%s/\\\\n/\\r/g<CR>
-		<CMD>%s/\\\\t/\\t/g<CR>
-		<CMD>g/ERROR/exec "normal O"<CR>
-	]]
+	'<CMD>%s/\\\\n/\\r/g<CR><CMD>%s/\\\\t/\\t/g<CR><CMD>g/ERROR/exec "normal O"<CR>'
 )
 
 -- move through tabs
