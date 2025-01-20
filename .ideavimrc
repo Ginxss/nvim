@@ -63,13 +63,14 @@ nnoremap ä ]
 onoremap ä ]
 vnoremap ä ]
 
-" nnoremap üü [m{j_f(
-" onoremap üü [m{j_f(
-" vnoremap üü [m{j_f(
+" Jump up method context
+nnoremap ää [mb%
+onoremap ää [mb%
+vnoremap ää [mb%
 
-nnoremap üü [mb%
-onoremap üü [mb%
-vnoremap üü [mb%
+nnoremap üü [mb%gd
+onoremap üü [mb%gd
+vnoremap üü [mb%gd
 
 " Center on jumps
 nnoremap <C-d> <C-d>zz
@@ -97,7 +98,7 @@ vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " Insert semicolon at end of line and exit insert mode
-inoremap <C-q> <End>;<ESC>
+inoremap <C-d> <End>;<ESC>
 
 " Clear search highlights with esc
 nnoremap <ESC> :nohlsearch<CR>
@@ -183,6 +184,7 @@ map <leader>db <Action>(ActivateDatabaseToolWindow)
 " Code actions
 map <leader>ca <Action>(ShowIntentionActions)
 map <leader>cr <Action>(RenameElement)
+map <leader>cp <Action>(ParameterInfo)
 
 " Go to
 map gd <Action>(GotoDeclaration)
@@ -216,6 +218,6 @@ map <leader>gp <Action>(VcsShowPrevChangeMarker)
 map <leader>gd <Action>(Compare.SameVersion)
 map <leader>gr <Action>(Vcs.RollbackChangedLines)
 map <leader>gb <Action>(Annotate)
-
-" Parameter info (collides with "editor up", but that's ok)
-map <C-p> <Action>(ParameterInfo)
+map <leader>gh <Action>(Vcs.ShowTabbedFileHistory)
+map <C-n> <Action>(NextDiff)
+map <C-p> <Action>(PreviousDiff)
