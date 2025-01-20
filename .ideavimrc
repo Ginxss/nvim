@@ -97,15 +97,15 @@ inoremap <A-k> <ESC>:m -2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
-" Insert semicolon at end of line and exit insert mode
-inoremap <C-d> <End>;<ESC>
-
 " Clear search highlights with esc
 nnoremap <ESC> :nohlsearch<CR>
 
 " Ctrl+s save (and exit insert mode)
 nnoremap <C-s> :w<CR>
 inoremap <C-s> <ESC>:w<CR>
+
+" Insert semicolon at end of line and exit insert mode
+inoremap <C-d> <End>;<ESC>
 
 " System clipboard
 nnoremap <leader>yy "+yy
