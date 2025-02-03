@@ -1,5 +1,6 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
+	enabled = not vim.g.profile_light,
 	build = ":TSUpdate",
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()

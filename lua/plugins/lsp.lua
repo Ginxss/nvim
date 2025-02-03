@@ -15,6 +15,7 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
+		enabled = not vim.g.profile_light,
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = { "williamboman/mason-lspconfig.nvim", "hrsh7th/cmp-nvim-lsp" },
 		config = function()

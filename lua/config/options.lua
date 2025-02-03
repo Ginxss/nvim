@@ -1,4 +1,5 @@
 vim.g.is_windows = vim.loop.os_uname().sysname == "Windows_NT"
+vim.g.profile_light = false
 
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
@@ -26,8 +27,7 @@ vim.opt.expandtab = false
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
--- use this to always show the sign column to avoid jumping
--- vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = "yes"
 
 if not vim.g.is_windows then
 	vim.opt.shell = "/usr/bin/fish"
