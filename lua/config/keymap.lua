@@ -22,7 +22,7 @@ vim.keymap.set({ "n", "o", "v" }, "ö", "%")
 -- jump context
 vim.keymap.set({ "n", "o", "v" }, "ü", "[")
 vim.keymap.set({ "n", "o", "v" }, "ä", "]")
-vim.keymap.set({ "n", "o", "v" }, "üü", "[m{j_f(")
+vim.keymap.set({ "n", "o", "v" }, "üü", "[m{j_f(") -- TODO
 
 -- center on jumps
 vim.keymap.set({ "n", "o", "v" }, "<C-d>", "<C-d>zz")
@@ -38,9 +38,6 @@ vim.keymap.set("i", "<A-k>", "<ESC><CMD>m -2<CR>==gi")
 vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv") -- <cmd> runs directly in the same execution context, : uses the cmdline context -> can only find the selection marks with :
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
 
--- insert semicolon at end of line and exit insert mode
-vim.keymap.set("i", "<C-q>", "<End>;<ESC>")
-
 -- clear search highlights with esc
 vim.g.default_esc_mapping = "<CMD>nohlsearch<CR>"
 vim.keymap.set("n", "<ESC>", vim.g.default_esc_mapping)
@@ -52,6 +49,9 @@ vim.keymap.set("t", "<ESC>", "<C-\\><C-n>")
 vim.keymap.set("n", "<C-s>", "<CMD>w<CR>")
 vim.keymap.set("i", "<C-s>", "<ESC><CMD>w<CR>")
 
+-- insert semicolon at end of line and exit insert mode
+vim.keymap.set("i", "<C-d>", "<End>;<ESC>")
+
 -- system clipboard
 vim.keymap.set("n", "<leader>yy", '"+yy')
 vim.keymap.set({ "n", "o", "v" }, "<leader>y", '"+y')
@@ -60,7 +60,7 @@ vim.keymap.set({ "n", "v" }, "<leader>p", '"+p')
 vim.keymap.set({ "n", "v" }, "<leader>P", '"+P')
 
 -- paste without losing content
-vim.keymap.set("v", "<C-p>", "pgvy")
+vim.keymap.set("v", "<leader><leader>p", "pgvy")
 
 -- switch back to previous file
 vim.keymap.set("n", "<leader>b", "<C-^>")
@@ -76,13 +76,13 @@ vim.keymap.set(
 vim.keymap.set("n", "<C-w>t", "gt")
 vim.keymap.set("n", "<C-w><C-t>", "gt")
 
--- close current file
+-- close files
 vim.keymap.set({ "n", "o", "v" }, "<leader>x", "<CMD>q<CR>")
 vim.keymap.set({ "n", "o", "v" }, "<leader><leader>x", "<CMD>qa<CR>")
 
 -- move through quickfix list
-vim.keymap.set("n", "<leader>qj", "<CMD>cnext<CR>")
-vim.keymap.set("n", "<leader>qk", "<CMD>cprevious<CR>")
+vim.keymap.set("n", "<leader>qn", "<CMD>cnext<CR>")
+vim.keymap.set("n", "<leader>qp", "<CMD>cprevious<CR>")
 
 -- code actions
 vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action)
