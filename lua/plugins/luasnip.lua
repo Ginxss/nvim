@@ -38,5 +38,6 @@ return {
 	{
 		"saadparwaiz1/cmp_luasnip",
 		enabled = not vim.g.profile_light,
+		lazy = true,
 	},
 }
