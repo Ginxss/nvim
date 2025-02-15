@@ -27,6 +27,8 @@ vim.keymap.set({ "n", "o", "v" }, "üü", "[m{j_f(") -- TODO
 -- center on jumps
 vim.keymap.set({ "n", "o", "v" }, "<C-d>", "<C-d>zz")
 vim.keymap.set({ "n", "o", "v" }, "<C-u>", "<C-u>zz")
+vim.keymap.set({ "n", "o", "v" }, "<C-f>", "<C-f>zz")
+vim.keymap.set({ "n", "o", "v" }, "<C-b>", "<C-b>zz")
 vim.keymap.set({ "n", "o", "v" }, "n", "nzz")
 vim.keymap.set({ "n", "o", "v" }, "N", "Nzz")
 
@@ -50,7 +52,7 @@ vim.keymap.set("n", "<C-s>", "<CMD>w<CR>")
 vim.keymap.set("i", "<C-s>", "<ESC><CMD>w<CR>")
 
 -- insert semicolon at end of line and exit insert mode
-vim.keymap.set("i", "<C-d>", "<End>;<ESC>")
+vim.keymap.set("i", "<C-f>", "<End>;<ESC>")
 
 -- system clipboard
 vim.keymap.set("n", "<leader>yy", '"+yy')
@@ -107,5 +109,5 @@ vim.keymap.set("n", "<leader><leader>h", function()
 	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end)
 
--- for testing lazy loading
+-- lazy.nvim
 vim.keymap.set("n", "<leader><leader>z", "<CMD>Lazy<CR>")

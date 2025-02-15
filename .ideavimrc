@@ -13,10 +13,10 @@ set smartcase
 
 " PLUGINS (https://jb.gg/ideavim-plugins)
 
+Plug 'tpope/vim-commentary'
+
 Plug 'machakann/vim-highlightedyank'
 let g:highlightedyank_highlight_duration = 75
-
-Plug 'tpope/vim-commentary'
 
 
 " VIM KEYMAPS
@@ -81,6 +81,14 @@ nnoremap <C-u> <C-u>zz
 onoremap <C-u> <C-u>zz
 vnoremap <C-u> <C-u>zz
 
+nnoremap <C-f> <C-f>zz
+onoremap <C-f> <C-f>zz
+vnoremap <C-f> <C-f>zz
+
+nnoremap <C-b> <C-b>zz
+onoremap <C-b> <C-b>zz
+vnoremap <C-b> <C-b>zz
+
 nnoremap n nzz
 onoremap n nzz
 vnoremap n nzz
@@ -105,7 +113,7 @@ nnoremap <C-s> :w<CR>
 inoremap <C-s> <ESC>:w<CR>
 
 " Insert semicolon at end of line and exit insert mode
-inoremap <C-d> <End>;<ESC>
+inoremap <C-f> <End>;<ESC>
 
 " System clipboard
 nnoremap <leader>yy "+yy
@@ -119,7 +127,7 @@ nnoremap <leader>P "+P
 vnoremap <leader>P "+P
 
 " Paste without losing content
-vnoremap <C-p> pgvy
+vnoremap <leader><leader>p pgvy
 
 " Switch back to previous file
 nnoremap <leader>b <C-^>
@@ -139,10 +147,6 @@ nnoremap <leader>x :q<CR>
 onoremap <leader>x :q<CR>
 vnoremap <leader>x :q<CR>
 
-nnoremap <leader><leader><leader>x :qa<CR>
-onoremap <leader><leader><leader>x :qa<CR>
-vnoremap <leader><leader><leader>x :qa<CR>
-
 
 " ACTION KEYMAPS (https://jb.gg/abva4t)
 
@@ -161,8 +165,10 @@ map <C-w><C-m> <Action>(MoveEditorToOppositeTabGroup)
 map <C-w>u <Action>(Unsplit)
 map <C-w><C-u> <Action>(Unsplit)
 
-" Close current tab group
+" Close tabs
+map <leader>X <Action>(CloseAllEditorsButActive)
 map <leader><leader>x <Action>(CloseAllEditors)
+map <leader><leader><leader>x <Action>(CloseAllUnmodifiedEditors)
 
 " Hover
 map <leader>h <Action>(ShowHoverInfo)
@@ -180,6 +186,9 @@ map <leader>t <Action>(ActivateTerminalToolWindow)
 map <leader>sr <Action>(ActivateServicesToolWindow)
 map <leader>st <Action>(ActivateStructureToolWindow)
 map <leader>db <Action>(ActivateDatabaseToolWindow)
+
+" View Mode
+map <leader>z <Action>(ToggleZenMode)
 
 " Code actions
 map <leader>ca <Action>(ShowIntentionActions)
@@ -204,6 +213,7 @@ map <leader>rc <Action>(Resume)
 map <leader>rn <Action>(StepOver)
 map <leader>ri <Action>(StepInto)
 map <leader>ro <Action>(StepOut)
+map <leader>rs <Action>(Stop)
 
 map <F4> <Action>(ToggleLineBreakpoint)
 map <F5> <Action>(Resume)

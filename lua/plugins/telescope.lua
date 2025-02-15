@@ -40,6 +40,7 @@ return {
 		vim.keymap.set("n", "<leader>fd", builtin.diagnostics)
 		vim.keymap.set("n", "<leader>fh", builtin.help_tags)
 		vim.keymap.set("n", "<leader>ft", builtin.treesitter)
+		vim.keymap.set("n", "<leader>fb", builtin.buffers)
 		vim.keymap.set("n", "<leader>fc", function()
 			require("tokyonight")
 			builtin.colorscheme()
