@@ -22,7 +22,16 @@ return {
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
 
-			lspconfig.lua_ls.setup({ capabilities = capabilities })
+			lspconfig.lua_ls.setup({
+				capabilities = capabilities,
+				settings = {
+					Lua = {
+						diagnostics = { disable = { "missing-fields" } },
+					},
+				},
+			})
+
+			lspconfig.ts_ls.setup({ capabilities = capabilities })
 
 			lspconfig.rust_analyzer.setup({
 				capabilities = capabilities,
@@ -31,6 +40,16 @@ return {
 						inlayHints = {
 							maxLength = 100,
 						},
+						procMacro = {
+							ignored = {
+								leptos_macro = {
+									-- "component",
+									"server",
+									"view", -- overrides treesitter (rstml) highlighting if not ignored
+								},
+							},
+						},
+						diagnostics = { disabled = { "proc-macro-disabled" } },
 					},
 				},
 			})
