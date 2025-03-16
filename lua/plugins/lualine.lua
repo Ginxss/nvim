@@ -28,6 +28,9 @@ return {
 			options = {
 				globalstatus = true,
 			},
+			sections = {
+				lualine_c = { { "filename", path = 1 } },
+			},
 			inactive_sections = {},
 			extensions = { "lazy", "nvim-tree", "toggleterm", "mason", telescope, undotree },
 		})
