@@ -115,15 +115,10 @@ inoremap <C-s> <ESC>:w<CR>
 " Insert semicolon at end of line and exit insert mode
 inoremap <C-f> <End>;<ESC>
 
-" Delete rest of line except last character
-nnoremap <leader>d v$2hd
-onoremap <leader>d v$2hd
-vnoremap <leader>d v$2hd
-
-" A but ignoring last character
-nnoremap <leader>a $i
-onoremap <leader>a $i
-vnoremap <leader>a $i
+" D, C and A but ignoring the last character
+nnoremap <leader>D v$2hd
+nnoremap <leader>C v$2hc
+nnoremap <leader>A $i
 
 " System clipboard
 nnoremap <leader>yy "+yy
