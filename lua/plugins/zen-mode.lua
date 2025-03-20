@@ -1,6 +1,6 @@
 return {
 	"folke/zen-mode.nvim",
-	enabled = not vim.g.profile_light,
+	cond = not vim.g.profile_light,
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		local zen_mode = require("zen-mode")

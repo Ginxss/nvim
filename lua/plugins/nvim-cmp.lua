@@ -2,6 +2,7 @@
 return {
 	{
 		"folke/lazydev.nvim",
+		cond = not vim.g.profile_light,
 		ft = "lua",
 		opts = {
 			library = {

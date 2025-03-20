@@ -1,7 +1,7 @@
 return {
 	{
 		"L3MON4D3/LuaSnip",
-		enabled = not vim.g.profile_light,
+		cond = not vim.g.profile_light,
 		lazy = true,
 		version = "v2.*",
 		build = not vim.g.is_windows and "make install_jsregexp" or nil,
@@ -37,7 +37,7 @@ return {
 	},
 	{
 		"saadparwaiz1/cmp_luasnip",
-		enabled = not vim.g.profile_light,
+		cond = not vim.g.profile_light,
 		lazy = true,
 	},
 }

@@ -1,11 +1,13 @@
 return {
 	{
 		"williamboman/mason.nvim",
+		cond = not vim.g.profile_light,
 		lazy = true,
 		config = true,
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
+		cond = not vim.g.profile_light,
 		lazy = true,
 		dependencies = { "williamboman/mason.nvim" },
 		opts = {
@@ -15,7 +17,7 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
-		enabled = not vim.g.profile_light,
+		cond = not vim.g.profile_light,
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = { "williamboman/mason-lspconfig.nvim", "hrsh7th/cmp-nvim-lsp" },
 		config = function()

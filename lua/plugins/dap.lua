@@ -1,6 +1,7 @@
 return {
 	{
 		"theHamsta/nvim-dap-virtual-text",
+		cond = not vim.g.profile_light,
 		lazy = true,
 		opts = {
 			highlight_changed_variables = false,
@@ -8,6 +9,7 @@ return {
 	},
 	{
 		"mfussenegger/nvim-dap",
+		cond = not vim.g.profile_light,
 		dependencies = { "rcarriga/nvim-dap-ui", "nvim-neotest/nvim-nio", "theHamsta/nvim-dap-virtual-text" },
 		keys = {
 			{

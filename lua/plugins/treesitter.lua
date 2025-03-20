@@ -1,12 +1,10 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
-		enabled = not vim.g.profile_light,
 		build = ":TSUpdate",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("nvim-treesitter.configs").setup({
-				ensure_installed = { "lua" },
 				auto_install = true,
 				highlight = {
 					enable = true,
@@ -26,7 +24,7 @@ return {
 	},
 	{
 		"rayliwell/tree-sitter-rstml",
-		enabled = not vim.g.profile_light,
+		cond = not vim.g.profile_light,
 		build = ":TSUpdate",
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = { "nvim-treesitter/nvim-treesitter" },

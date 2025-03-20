@@ -21,6 +21,7 @@ return {
 	},
 	{
 		"folke/tokyonight.nvim",
+		cond = not vim.g.profile_light,
 		lazy = true, -- manually required by telescope when opening colorscheme picker
 		config = function()
 			require("tokyonight").setup({

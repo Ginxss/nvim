@@ -1,6 +1,6 @@
 return {
 	"lewis6991/gitsigns.nvim",
-	enabled = not vim.g.profile_light,
+	cond = not vim.g.profile_light,
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		local gitsigns = require("gitsigns")
