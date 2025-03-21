@@ -48,14 +48,18 @@ local function get_code_with_filetype(lsp_result)
 
 	local buf = get_buffer(filename)
 
+	local lines, filetype
+
 	if buf then
-		local lines = vim.api.nvim_buf_get_lines(buf, start_line, end_line, false)
-		local filetype = vim.api.nvim_get_option_value("filetype", { buf = buf })
-		return lines, filetype
+		lines = vim.api.nvim_buf_get_lines(buf, start_line, end_line, false)
+		filetype = vim.api.nvim_get_option_value("filetype", { buf = buf })
 	else
-		print("No buffer found, should fall back to disk!")
-		return
+		local all_lines = vim.fn.readfile(filename)
+		lines = vim.list_slice(all_lines, start_line + 1, end_line)
+		filetype = vim.filetype.match({ filename = filename })
 	end
+
+	return lines, filetype
 end
 
 --- @param lines string[]
