@@ -86,12 +86,48 @@ local function max_line_length(lines)
 	return max_length
 end
 
+--- Sets the keymap for each of the keys in the specified buffer
+--- @param keys string[]
+--- @param buf integer
+--- @param func function
+local function set_multi_keymap(keys, buf, func)
+	for _, key in ipairs(keys) do
+		vim.keymap.set("n", key, func, { buffer = buf })
+	end
+end
+
+--- Sets up the keymaps for the new floating window
+--- @param win integer: the id of the floating window
+--- @param buf integer: the buffer id of the floating window
+--- @param base_buf integer: the buffer id of the base window
+local function setup_keymaps(win, buf, base_buf)
+	vim.keymap.set("n", "<leader>l", function()
+		vim.api.nvim_set_current_win(win)
+	end, { buffer = base_buf })
+
+	local augroup = vim.api.nvim_create_augroup("SpyAutoClose", {})
+
+	local close_win = function()
+		vim.api.nvim_win_close(win, true)
+		vim.api.nvim_buf_delete(buf, { force = true })
+
+		vim.api.nvim_del_augroup_by_id(augroup)
+		vim.keymap.del("n", "<leader>l", { buffer = base_buf })
+	end
+
+	vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+		group = augroup,
+		buffer = base_buf,
+		callback = close_win,
+	})
+
+	set_multi_keymap({ "q", "<ESC>", "<C-c>" }, buf, close_win)
+end
+
 --- @param lines string[]
 --- @param filetype string?
 local function open_floating_win(lines, filetype)
-	local max_length = max_line_length(lines)
-	local width = math.min(max_length, 100)
-	local height = math.min(#lines, 40)
+	local base_buf = vim.api.nvim_get_current_buf()
 
 	local buf = vim.api.nvim_create_buf(false, true)
 	vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
@@ -100,6 +136,10 @@ local function open_floating_win(lines, filetype)
 	if filetype then
 		vim.api.nvim_set_option_value("filetype", filetype, { buf = buf })
 	end
+
+	local max_length = max_line_length(lines)
+	local width = math.min(max_length, 100)
+	local height = math.min(#lines, 40)
 
 	local win_opts = {
 		width = width,
@@ -111,12 +151,10 @@ local function open_floating_win(lines, filetype)
 		border = "rounded",
 	}
 
-	local win = vim.api.nvim_open_win(buf, true, win_opts)
+	local win = vim.api.nvim_open_win(buf, false, win_opts)
 	vim.api.nvim_set_option_value("wrap", false, { win = win })
 
-	vim.keymap.set("n", "<ESC>", "<CMD>bd<CR>", { buffer = buf })
-	vim.keymap.set("n", "<C-c>", "<CMD>bd<CR>", { buffer = buf })
-	vim.keymap.set("n", "q", "<CMD>bd<CR>", { buffer = buf })
+	setup_keymaps(win, buf, base_buf)
 end
 
 --- Parses the lsp result and displays the code in a new floating window
