@@ -4,19 +4,22 @@ M.setup = function()
 	-- nothing
 end
 
-local function found(err, result)
+--- @return boolean
+local function success(err, result)
 	return not err and result and not vim.tbl_isempty(result)
 end
 
+--- Requests implementations first and definitions second from the lsp for the cursor position
+--- @param callback function: The function to call with the lsp result. If no result is found, the function is not called.
 local function request_lsp(callback)
 	local params = vim.lsp.util.make_position_params()
 
 	vim.lsp.buf_request(0, "textDocument/implementation", params, function(impl_err, impl_result)
-		if found(impl_err, impl_result) then
+		if success(impl_err, impl_result) then
 			callback(impl_result)
 		else
 			vim.lsp.buf_request(0, "textDocument/definition", params, function(def_err, def_result)
-				if found(def_err, def_result) then
+				if success(def_err, def_result) then
 					callback(def_result)
 				end
 			end)
@@ -24,7 +27,21 @@ local function request_lsp(callback)
 	end)
 end
 
-local function get_buffer(filename)
+--- @return string, integer, integer: filename, start line index (0-based), end line index (exclusive)
+local function parse_info(lsp_result)
+	local uri = lsp_result[1].targetUri
+	local filename = vim.uri_to_fname(uri)
+
+	local range = lsp_result[1].targetRange
+	local start_line = range.start.line
+	local end_line = range["end"].line + 1
+
+	return filename, start_line, end_line
+end
+
+--- @param filename string
+--- @return integer?: the buffer handle or nil
+local function find_buffer(filename)
 	local bufs = vim.api.nvim_list_bufs()
 
 	for _, buf in ipairs(bufs) do
@@ -36,17 +53,10 @@ local function get_buffer(filename)
 	return nil
 end
 
---- Gets the implementation code from the lsp result
---- @return string[]?, string?: the lines and the filetype of the source buffer/file
+--- @return string[]?, string?: function code, filetype of the src buffer/file
 local function get_code_with_filetype(lsp_result)
-	local uri = lsp_result[1].targetUri
-	local filename = vim.uri_to_fname(uri)
-
-	local range = lsp_result[1].targetRange
-	local start_line = range.start.line
-	local end_line = range["end"].line + 1
-
-	local buf = get_buffer(filename)
+	local filename, start_line, end_line = parse_info(lsp_result)
+	local buf = find_buffer(filename)
 
 	local lines, filetype
 
@@ -105,18 +115,21 @@ local function open_floating_win(lines, filetype)
 	vim.api.nvim_set_option_value("wrap", false, { win = win })
 
 	vim.keymap.set("n", "<ESC>", "<CMD>bd<CR>", { buffer = buf })
+	vim.keymap.set("n", "<C-c>", "<CMD>bd<CR>", { buffer = buf })
 	vim.keymap.set("n", "q", "<CMD>bd<CR>", { buffer = buf })
 end
 
-local function display_function_code(lsp_result)
+--- Parses the lsp result and displays the code in a new floating window
+local function display_code(lsp_result)
 	local lines, filetype = get_code_with_filetype(lsp_result)
 	if lines then
 		open_floating_win(lines, filetype)
 	end
 end
 
+--- Opens the implementation of the function under the cursor in a floating window
 M.peek_implementation = function()
-	request_lsp(display_function_code)
+	request_lsp(display_code)
 end
 
 return M
