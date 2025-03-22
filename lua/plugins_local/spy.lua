@@ -1,7 +1,37 @@
 local M = {}
 
-M.setup = function()
-	-- nothing
+--- @class spy.Options
+--- @field focus_on_open boolean
+--- @field focus_keymap string
+--- @field close_keymaps string[]
+--- @field wrap boolean
+--- @field max_width number
+--- @field max_height number
+--- @field win_border string
+
+--- @type spy.Options
+local options = {
+	focus_on_open = false,
+	focus_keymap = "<leader>l",
+	close_keymaps = { "q", "<ESC>", "<C-c>" },
+	wrap = true,
+	max_width = 100,
+	max_height = 40,
+	win_border = "rounded",
+}
+
+--- @class spy.OptionsNullable
+--- @field focus_on_open boolean?: Whether the floating window should take focus
+--- @field focus_keymap string?: Keymap to enter the floating window if not focused on open
+--- @field close_keymaps string[]?: Keymaps to close the focused floating window
+--- @field wrap boolean?: Wrap for the floating window
+--- @field max_width integer?: Maxmimum width for the floating window
+--- @field max_height integer?: Maxmimum height for the floating window
+--- @field win_border string?: Border style for the floating window
+
+--- @param opts spy.OptionsNullable
+M.setup = function(opts)
+	options = vim.tbl_deep_extend("force", options, opts or {})
 end
 
 --- @return boolean
@@ -101,7 +131,7 @@ end
 --- @param buf integer: the buffer id of the floating window
 --- @param base_buf integer: the buffer id of the base window
 local function setup_keymaps(win, buf, base_buf)
-	vim.keymap.set("n", "<leader>l", function()
+	vim.keymap.set("n", options.focus_keymap, function()
 		vim.api.nvim_set_current_win(win)
 	end, { buffer = base_buf })
 
@@ -112,7 +142,7 @@ local function setup_keymaps(win, buf, base_buf)
 		vim.api.nvim_buf_delete(buf, { force = true })
 
 		vim.api.nvim_del_augroup_by_id(augroup)
-		vim.keymap.del("n", "<leader>l", { buffer = base_buf })
+		vim.keymap.del("n", options.focus_keymap, { buffer = base_buf })
 	end
 
 	vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
@@ -121,7 +151,7 @@ local function setup_keymaps(win, buf, base_buf)
 		callback = close_win,
 	})
 
-	set_multi_keymap({ "q", "<ESC>", "<C-c>" }, buf, close_win)
+	set_multi_keymap(options.close_keymaps, buf, close_win)
 end
 
 --- @param lines string[]
@@ -137,9 +167,8 @@ local function open_floating_win(lines, filetype)
 		vim.api.nvim_set_option_value("filetype", filetype, { buf = buf })
 	end
 
-	local max_length = max_line_length(lines)
-	local width = math.min(max_length, 100)
-	local height = math.min(#lines, 40)
+	local width = math.min(max_line_length(lines), options.max_width)
+	local height = math.min(#lines, options.max_height)
 
 	local win_opts = {
 		width = width,
@@ -148,11 +177,11 @@ local function open_floating_win(lines, filetype)
 		col = 0,
 		relative = "cursor",
 		style = "minimal",
-		border = "rounded",
+		border = options.win_border,
 	}
 
-	local win = vim.api.nvim_open_win(buf, false, win_opts)
-	vim.api.nvim_set_option_value("wrap", false, { win = win })
+	local win = vim.api.nvim_open_win(buf, options.focus_on_open, win_opts)
+	vim.api.nvim_set_option_value("wrap", options.wrap, { win = win })
 
 	setup_keymaps(win, buf, base_buf)
 end
