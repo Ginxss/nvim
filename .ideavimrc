@@ -140,13 +140,6 @@ nnoremap <leader>b <C-^>
 " Format log file
 nnoremap <leader><leader>l :%s/\\\n/\r/g<CR>:%s/\\\t/    /g<CR>:g/ERROR/exec "normal O"<CR>
 
-" Move through tabs
-nnoremap <C-w>t gt
-nnoremap <C-w><C-t> gt
-
-nnoremap <C-w>T gT
-nnoremap <C-w><C-T> gT
-
 " Close current file
 nnoremap <leader>x :q<CR>
 onoremap <leader>x :q<CR>
@@ -176,7 +169,6 @@ map <leader><leader>x <Action>(CloseAllEditors)
 map <leader><leader><leader>x <Action>(CloseAllUnmodifiedEditors)
 
 " Hover
-map <leader>h <Action>(ShowHoverInfo)
 map <leader>i <Action>(QuickImplementations)
 
 " Find

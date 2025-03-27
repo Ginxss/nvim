@@ -79,10 +79,6 @@ vim.keymap.set(
 	'<CMD>%s/\\\\n/\\r/g<CR><CMD>%s/\\\\t/\\t/g<CR><CMD>g/ERROR/exec "normal O"<CR>'
 )
 
--- move through tabs
-vim.keymap.set("n", "<C-w>t", "gt")
-vim.keymap.set("n", "<C-w><C-t>", "gt")
-
 -- close files
 vim.keymap.set({ "n", "o", "v" }, "<leader>x", "<CMD>q<CR>")
 vim.keymap.set({ "n", "o", "v" }, "<leader><leader>x", "<CMD>qa<CR>")
@@ -101,8 +97,13 @@ vim.keymap.set("n", "gD", vim.lsp.buf.declaration)
 vim.keymap.set("n", "ga", vim.lsp.buf.implementation)
 
 -- go to diagnostics
-vim.keymap.set("n", "gp", vim.diagnostic.goto_next)
-vim.keymap.set("n", "gP", vim.diagnostic.goto_prev)
+vim.keymap.set("n", "gp", function()
+	-- TODO: Jump to warnings if no errors exist and jump to hints if no warnings exist
+	vim.diagnostic.jump({ count = 1, float = true, severity = vim.diagnostic.severity.ERROR })
+end)
+vim.keymap.set("n", "gP", function()
+	vim.diagnostic.jump({ count = -1, float = true, severity = vim.diagnostic.severity.ERROR })
+end)
 
 -- toggle diagnostics
 vim.keymap.set("n", "<leader><leader>d", function()

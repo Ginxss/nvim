@@ -121,7 +121,7 @@ return {
 
 			local function close_ui()
 				dapui.close()
-				vim.keymap.set("n", "<leader>e", vim.g.tree_mapping)
+				vim.keymap.set("n", "<leader>e", vim.g.default_leader_e_mapping)
 			end
 
 			dap.listeners.before.attach.dapui_config = function()
