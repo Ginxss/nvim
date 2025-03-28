@@ -97,12 +97,32 @@ vim.keymap.set("n", "gD", vim.lsp.buf.declaration)
 vim.keymap.set("n", "ga", vim.lsp.buf.implementation)
 
 -- go to diagnostics
+local function jump_lsp_problems(count)
+	local severity_counts = vim.diagnostic.count(0)
+	local ordered_severities = {
+		vim.diagnostic.severity.ERROR,
+		vim.diagnostic.severity.WARN,
+		vim.diagnostic.severity.HINT,
+		vim.diagnostic.severity.INFO,
+	}
+
+	local max_severity = nil
+	for _, severity in ipairs(ordered_severities) do
+		local severity_count = severity_counts[severity] or 0
+		if severity_count > 0 then
+			max_severity = severity
+			break
+		end
+	end
+
+	vim.diagnostic.jump({ count = count, float = true, severity = max_severity })
+end
+
 vim.keymap.set("n", "gp", function()
-	-- TODO: Jump to warnings if no errors exist and jump to hints if no warnings exist
-	vim.diagnostic.jump({ count = 1, float = true, severity = vim.diagnostic.severity.ERROR })
+	jump_lsp_problems(1)
 end)
 vim.keymap.set("n", "gP", function()
-	vim.diagnostic.jump({ count = -1, float = true, severity = vim.diagnostic.severity.ERROR })
+	jump_lsp_problems(-1)
 end)
 
 -- toggle diagnostics

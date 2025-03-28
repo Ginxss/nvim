@@ -169,6 +169,7 @@ map <leader><leader>x <Action>(CloseAllEditors)
 map <leader><leader><leader>x <Action>(CloseAllUnmodifiedEditors)
 
 " Hover
+map <leader>h <Action>(ShowHoverInfo)
 map <leader>i <Action>(QuickImplementations)
 
 " Find
