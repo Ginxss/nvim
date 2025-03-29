@@ -42,7 +42,7 @@ end
 --- Requests implementations first and definitions second from the lsp for the cursor position
 --- @param callback function: The function to call with the lsp result. If no result is found, the function is not called.
 local function request_lsp(callback)
-	local params = vim.lsp.util.make_position_params()
+	local params = vim.lsp.util.make_position_params(0, "utf-8")
 
 	vim.lsp.buf_request(0, "textDocument/implementation", params, function(impl_err, impl_result)
 		if success(impl_err, impl_result) then
@@ -55,6 +55,14 @@ local function request_lsp(callback)
 			end)
 		end
 	end)
+
+	-- TODO: This works in lua!
+	-- vim.lsp.buf_request(0, "textDocument/documentSymbol", params, function(impl_err, impl_result)
+	-- 	if success(impl_err, impl_result) then
+	-- 		vim.notify(vim.inspect(impl_result))
+	-- 	else
+	-- 	end
+	-- end)
 end
 
 --- @return string, integer, integer: filename, start line index (0-based), end line index (exclusive)

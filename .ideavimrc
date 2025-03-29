@@ -137,6 +137,10 @@ vnoremap <leader><leader>p pgvy
 " Switch back to previous file
 nnoremap <leader>b <C-^>
 
+" Correct scroll direction
+nnoremap <C-e> <C-y>
+nnoremap <C-y> <C-e>
+
 " Format log file
 nnoremap <leader><leader>l :%s/\\\n/\r/g<CR>:%s/\\\t/    /g<CR>:g/ERROR/exec "normal O"<CR>
 

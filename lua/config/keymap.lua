@@ -3,6 +3,20 @@
 -- Useful default mappings:
 -- C-xl -> complete line
 
+-- Might be useful in the future
+local function get_keymap(key, mode)
+	local key_raw = vim.api.nvim_replace_termcodes(key, true, false, true)
+
+	local mappings = vim.api.nvim_get_keymap(mode)
+	for _, mapping in ipairs(mappings) do
+		if mapping.lhsraw == key_raw then
+			return mapping.rhs
+		end
+	end
+
+	return nil
+end
+
 -- quick movement with ctrl
 vim.keymap.set({ "n", "o", "v" }, "<C-h>", "^")
 vim.keymap.set({ "n", "o", "v" }, "<C-l>", "$")
@@ -72,6 +86,10 @@ vim.keymap.set("v", "<leader><leader>p", "pgvy")
 -- switch back to previous file
 vim.keymap.set("n", "<leader>b", "<C-^>")
 
+-- correct scroll direction
+vim.keymap.set("n", "<C-e>", "<C-y>")
+vim.keymap.set("n", "<C-y>", "<C-e>")
+
 -- Format log file
 vim.keymap.set(
 	"n",
@@ -115,7 +133,7 @@ local function jump_lsp_problems(count)
 		end
 	end
 
-	vim.diagnostic.jump({ count = count, float = true, severity = max_severity })
+	vim.diagnostic.jump({ count = count, float = { border = "rounded" }, severity = max_severity })
 end
 
 vim.keymap.set("n", "gp", function()
@@ -123,6 +141,11 @@ vim.keymap.set("n", "gp", function()
 end)
 vim.keymap.set("n", "gP", function()
 	jump_lsp_problems(-1)
+end)
+
+-- show diagnostics under cursor
+vim.keymap.set("n", "<leader>h", function()
+	vim.diagnostic.open_float({ border = "rounded", scope = "cursor" })
 end)
 
 -- toggle diagnostics
