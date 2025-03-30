@@ -133,7 +133,7 @@ local function jump_lsp_problems(count)
 		end
 	end
 
-	vim.diagnostic.jump({ count = count, float = { border = "rounded" }, severity = max_severity })
+	vim.diagnostic.jump({ count = count, float = true, severity = max_severity })
 end
 
 vim.keymap.set("n", "gp", function()
@@ -145,7 +145,7 @@ end)
 
 -- show diagnostics under cursor
 vim.keymap.set("n", "<leader>h", function()
-	vim.diagnostic.open_float({ border = "rounded", scope = "cursor" })
+	vim.diagnostic.open_float({ scope = "cursor" })
 end)
 
 -- toggle diagnostics

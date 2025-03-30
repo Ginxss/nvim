@@ -29,6 +29,11 @@ vim.opt.splitbelow = true
 
 vim.opt.signcolumn = "yes"
 
+vim.diagnostic.config({
+	virtual_text = { current_line = true },
+	float = { border = "rounded" },
+})
+
 if not vim.g.is_windows then
 	vim.opt.shell = "/usr/bin/fish"
 end
