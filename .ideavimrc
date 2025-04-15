@@ -115,7 +115,8 @@ inoremap <C-s> <ESC>:w<CR>
 " Insert semicolon at end of line and exit insert mode
 inoremap <C-f> <End>;<ESC>
 
-" D, C and A but ignoring the last character
+" v to end of line, D, C and A but ignoring the last character
+nnoremap <leader>V v$2h
 nnoremap <leader>D v$2hd
 nnoremap <leader>C v$2hc
 nnoremap <leader>A $i

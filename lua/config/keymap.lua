@@ -68,7 +68,8 @@ vim.keymap.set("i", "<C-s>", "<ESC><CMD>w<CR>")
 -- insert semicolon at end of line and exit insert mode
 vim.keymap.set("i", "<C-f>", "<End>;<ESC>")
 
--- D, C and A but ignoring the last character
+-- v to end of line, D, C and A but ignoring the last character
+vim.keymap.set("n", "<leader>V", "v$2h")
 vim.keymap.set("n", "<leader>D", "v$2hd")
 vim.keymap.set("n", "<leader>C", "v$2hc")
 vim.keymap.set("n", "<leader>A", "$i")

@@ -1,6 +1,14 @@
 return {
 	"stevearc/oil.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
+	keys = {
+		{
+			"<leader><leader>e",
+			function()
+				require("oil").open_float(nil, { preview = { vertical = true } })
+			end,
+		},
+	},
 	--- @module 'oil'
 	--- @type oil.SetupOpts
 	opts = {
@@ -24,14 +32,6 @@ return {
 		float = {
 			max_width = 0.8,
 			max_height = 0.9,
-		},
-	},
-	keys = {
-		{
-			"<leader><leader>e",
-			function()
-				require("oil").open_float(nil, { preview = { vertical = true } })
-			end,
 		},
 	},
 }
