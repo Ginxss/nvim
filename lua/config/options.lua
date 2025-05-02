@@ -30,7 +30,9 @@ vim.opt.splitbelow = true
 vim.opt.signcolumn = "yes"
 
 vim.diagnostic.config({
-	virtual_text = { current_line = true },
+	-- virtual_text = true,
+	-- virtual_text = { current_line = true },
+	virtual_lines = true,
 	float = { border = "rounded" },
 })
 

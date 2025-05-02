@@ -25,6 +25,9 @@ return {
 			["<C-p>"] = "actions.preview",
 			["<C-q>"] = "actions.refresh",
 			["<C-t>"] = { "actions.toggle_trash", mode = "n" },
+			-- Does not work yet
+			-- ["<C-d>"] = { "actions.preview_scroll_down", mode = "n" },
+			-- ["<C-u>"] = { "actions.preview_scroll_up", mode = "n" },
 			["<C-c>"] = { "actions.close", mode = "n" },
 			["<ESC>"] = { "actions.close", mode = "n" },
 			["q"] = { "actions.close", mode = "n" },
