@@ -33,6 +33,7 @@ vim.keymap.set("i", "<C-l>", "<Right>")
 vim.keymap.set({ "n", "o", "v" }, ".", ";")
 -- jump to corresponding bracket
 vim.keymap.set({ "n", "o", "v" }, "ö", "%")
+vim.keymap.set({ "n", "o", "v" }, ";", "%")
 -- jump context
 vim.keymap.set({ "n", "o", "v" }, "ü", "[")
 vim.keymap.set({ "n", "o", "v" }, "ä", "]")

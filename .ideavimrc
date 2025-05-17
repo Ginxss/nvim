@@ -53,6 +53,9 @@ vnoremap . ;
 nnoremap ö %
 onoremap ö %
 vnoremap ö %
+nnoremap ; %
+onoremap ; %
+vnoremap ; %
 
 " Jump context
 nnoremap ü [
