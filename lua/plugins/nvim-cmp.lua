@@ -19,6 +19,7 @@ return {
 			"hrsh7th/cmp-cmdline",
 			"L3MON4D3/LuaSnip",
 			"saadparwaiz1/cmp_luasnip",
+			"kristijanhusak/vim-dadbod-completion",
 		},
 		config = function()
 			local cmp = require("cmp")
@@ -61,6 +62,15 @@ return {
 					{ name = "path" },
 				}, {
 					{ name = "cmdline" },
+				}),
+			})
+
+			-- cmp for dadbod
+			cmp.setup.filetype({ "sql", "mysql", "plsql" }, {
+				sources = cmp.config.sources({
+					{ name = "vim-dadbod-completion" },
+				}, {
+					{ name = "buffer" },
 				}),
 			})
 
