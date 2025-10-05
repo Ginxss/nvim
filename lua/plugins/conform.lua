@@ -12,6 +12,7 @@ return {
 			lua = { "stylua" },
 			javascript = { "prettierd" },
 			typescript = { "prettierd" },
+			swift = { "swift-format" },
 		},
 	},
 }

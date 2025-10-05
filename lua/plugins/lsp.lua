@@ -12,6 +12,7 @@ return {
 		dependencies = { "williamboman/mason.nvim" },
 		opts = {
 			-- Should use local rust_analyzer & rustfmt (rustup). If not possible, install manually via Mason.
+			-- Must use local sourcekit, not included in mason
 			ensure_installed = { "lua_ls" },
 		},
 	},
@@ -34,6 +35,18 @@ return {
 			})
 
 			lspconfig.ts_ls.setup({ capabilities = capabilities })
+
+			lspconfig.gopls.setup({ capabilities = capabilities })
+
+			lspconfig.sourcekit.setup({
+				capabilities = vim.tbl_deep_extend("force", capabilities, {
+					workspace = {
+						didChangeWatchedFiles = {
+							dynamicRegistration = true,
+						},
+					},
+				}),
+			})
 
 			lspconfig.rust_analyzer.setup({
 				capabilities = capabilities,
