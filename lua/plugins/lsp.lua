@@ -23,9 +23,8 @@ return {
 		dependencies = { "williamboman/mason-lspconfig.nvim", "hrsh7th/cmp-nvim-lsp" },
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			local lspconfig = require("lspconfig")
 
-			lspconfig.lua_ls.setup({
+			vim.lsp.config("lua_ls", {
 				capabilities = capabilities,
 				settings = {
 					Lua = {
@@ -33,12 +32,15 @@ return {
 					},
 				},
 			})
+			vim.lsp.enable("lua_ls")
 
-			lspconfig.ts_ls.setup({ capabilities = capabilities })
+			vim.lsp.config("ts_ls", { capabilities = capabilities })
+			vim.lsp.enable("ts_ls")
 
-			lspconfig.gopls.setup({ capabilities = capabilities })
+			vim.lsp.config("gopls", { capabilities = capabilities })
+			vim.lsp.enable("gopls")
 
-			lspconfig.sourcekit.setup({
+			vim.lsp.config("sourcekit", {
 				capabilities = vim.tbl_deep_extend("force", capabilities, {
 					workspace = {
 						didChangeWatchedFiles = {
@@ -47,8 +49,9 @@ return {
 					},
 				}),
 			})
+			vim.lsp.enable("sourcekit")
 
-			lspconfig.rust_analyzer.setup({
+			vim.lsp.config("rust_analyzer", {
 				capabilities = capabilities,
 				settings = {
 					["rust-analyzer"] = {
@@ -68,6 +71,7 @@ return {
 					},
 				},
 			})
+			vim.lsp.enable("rust_analyzer")
 		end,
 	},
 }
