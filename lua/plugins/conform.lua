@@ -12,7 +12,7 @@ return {
 			lua = { "stylua" },
 			javascript = { "prettierd" },
 			typescript = { "prettierd" },
-			swift = { "swift-format" },
+			swift = { "swift_format" },
 		},
 	},
 }
